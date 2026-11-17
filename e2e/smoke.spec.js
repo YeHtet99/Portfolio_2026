@@ -1,0 +1,2 @@
+import { test, expect } from '@playwright/test'
+test('routes load and preserve primary navigation', async ({ page }) => { await page.goto('/'); await expect(page.getByText('Engineering', { exact: true })).toBeVisible(); await page.getByRole('link', { name: 'Projects', exact: true }).click(); await expect(page).toHaveURL(/\/projects$/); await page.goto('/projects/nxmap'); await expect(page.getByRole('heading', { name: 'NXMap' })).toBeVisible() })
