@@ -51,5 +51,5 @@ function TerminalEntry({ entry }) {
   if (entry.type === 'command') return <p className="terminal-command">&gt; {entry.text}</p>
   if (entry.type === 'system') return <p className="terminal-system">{entry.text}</p>
   const { label, lines, items } = entry.response
-  return <section className="terminal-block"><span>{label}</span>{lines?.map((line, index) => <p className={index === 0 && label === 'PROFILE' ? 'terminal-identity' : ''} key={line}>{line}</p>)}{items?.map(([title, detail, meta, description]) => <div className="terminal-item" key={title}><b>{title}</b><div><strong>{detail}</strong>{meta && <small>{meta}</small>}{description && <p>{description}</p>}</div></div>)}</section>
+  return <section className="terminal-block">{lines?.map((line, index) => <p className={index === 0 && label === 'PROFILE' ? 'terminal-identity' : ''} key={line}>{line}</p>)}{items?.map(([title, detail, meta, description]) => <div className="terminal-item" key={title}><b>{title}</b><div><strong>{detail}</strong>{meta && <small>{meta}</small>}{description && <p>{description}</p>}</div></div>)}</section>
 }
