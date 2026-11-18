@@ -14,7 +14,7 @@ export function TerminalConsole() {
   const outputRef = useRef(null)
   const [open, setOpen] = useState(false)
   const [input, setInput] = useState('')
-  const [entries, setEntries] = useState([{ type: 'system', text: 'Console ready. Type help to inspect the portfolio.' }])
+  const [entries, setEntries] = useState([{ type: 'system', text: 'Console ready. Type "help" to inspect the portfolio.' }])
   const [showHint, setShowHint] = useState(() => sessionStorage.getItem('terminal-hint-seen') !== 'true')
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export function TerminalConsole() {
     setEntries(previous => [...previous, { type: 'command', text: command }, response ? { type: 'response', response } : { type: 'system', text: `Command not found: ${command}. Type help.` }])
   }
 
-  return <div className="terminal-dock"><button className="terminal-trigger" type="button" aria-label="Open command console" aria-expanded={open} onClick={() => setOpen(true)}><span aria-hidden="true">&gt;_</span><span className="terminal-tooltip">Open terminal</span></button>{showHint && !open && <span className="terminal-hint">OPEN TERMINAL <b>&gt;_</b></span>}{open && <section className="terminal-panel" role="dialog" aria-label="Portfolio command console"><header><span><i/> COMMAND CONSOLE</span><button type="button" aria-label="Close command console" onClick={() => setOpen(false)}>x</button></header><div className="terminal-output" ref={outputRef} aria-live="polite">{entries.map((entry, index) => <TerminalEntry entry={entry} key={`${entry.type}-${index}`}/>)}</div><form onSubmit={runCommand}><label htmlFor="terminal-input">&gt;</label><input ref={inputRef} id="terminal-input" value={input} onChange={event => setInput(event.target.value)} placeholder="type a command" autoComplete="off"/><kbd>ENTER</kbd></form></section>}</div>
+  return <div className="terminal-dock"><button className="terminal-trigger" type="button" aria-label="Toggle command console" aria-expanded={open} onClick={() => setOpen(current => !current)}><span aria-hidden="true">&gt;_</span><span className="terminal-tooltip">{open ? 'Close terminal' : 'Open terminal'}</span></button>{showHint && !open && <span className="terminal-hint">OPEN TERMINAL <b>&gt;_</b></span>}{open && <section className="terminal-panel" role="dialog" aria-label="Portfolio command console"><header><span><i/> COMMAND CONSOLE</span><button type="button" aria-label="Close command console" onClick={() => setOpen(false)}>x</button></header><div className="terminal-output" ref={outputRef} aria-live="polite">{entries.map((entry, index) => <TerminalEntry entry={entry} key={`${entry.type}-${index}`}/>)}</div><form onSubmit={runCommand}><label htmlFor="terminal-input">&gt;</label><input ref={inputRef} id="terminal-input" value={input} onChange={event => setInput(event.target.value)} placeholder="type a command" autoComplete="off"/><kbd>ENTER</kbd></form></section>}</div>
 }
 
 function TerminalEntry({ entry }) {
