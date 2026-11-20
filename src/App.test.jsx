@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import App from './App'
 test('shows the hero title', async () => { render(<MemoryRouter><App/></MemoryRouter>); expect(await screen.findByText('Building clarity')).toBeInTheDocument() })
-test('shows the compact experience timeline preview', async () => { render(<MemoryRouter><App/></MemoryRouter>); expect(await screen.findByText('Mid-Level Full Stack Developer')).toBeInTheDocument(); expect(screen.getAllByText('Evercomm Singapore')).toHaveLength(2) })
+test('shows the compact experience timeline preview', async () => { render(<MemoryRouter><App/></MemoryRouter>); expect(await screen.findByText(/Building reliable ESG data-entry/)).toBeInTheDocument(); expect(screen.getByText(/Mid-Level Full Stack Developer/)).toBeInTheDocument() })
 test('shows a project detail route', async () => { render(<MemoryRouter initialEntries={['/projects/nxmap']}><App/></MemoryRouter>); expect(await screen.findByRole('heading', { name: 'NXMap' })).toBeInTheDocument() })
 test('shows the NXMap case study', async () => { render(<MemoryRouter initialEntries={['/projects/nxmap']}><App/></MemoryRouter>); expect(await screen.findByText(/Excel Import & Export/)).toBeInTheDocument(); expect(screen.getByText(/localized headers/)).toBeInTheDocument() })
 test('shows the verified NXStart case study', async () => { render(<MemoryRouter initialEntries={['/projects/nxstart']}><App/></MemoryRouter>); expect(await screen.findByRole('heading', { name: 'NXStart ESG Platform' })).toBeInTheDocument(); expect(screen.getByText(/previous KPI and overview state/)).toBeInTheDocument() })
