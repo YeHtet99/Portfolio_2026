@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 const commandResponses = {
-  help: { label: 'COMMAND INDEX', lines: ['about  - profile summary and engineering focus', 'experience  - professional roles and contributions', 'projects  - selected product work', 'skills  - engineering capabilities', 'contact  - direct contact channels', 'resume  - download resume', 'clear  - clear the console'] },
+  help: { label: 'COMMAND INDEX', lines: ['about  - profile summary and engineering focus', 'experience  - professional roles and contributions', 'projects  - selected product work', 'skills  - engineering capabilities', 'contact  - direct contact channels', 'clear  - clear the console'] },
   about: { label: 'PROFILE', lines: ['YE MYINT HTET', 'Software Engineer | Mandalay, Myanmar', '4+ years building ESG, carbon reporting, and HR management products.', 'Focus: Building data-rich product systems with React, Node.js, Express.js, MongoDB, and Redis.'] },
   experience: { label: 'EXPERIENCE', items: [['01', 'Software Engineer', 'Evercomm Singapore | Nov 2025 - Present', 'ESG dashboards, reporting workflows, Redis, and MongoDB.'], ['02', 'Mid-Level Full Stack Developer', 'Evercomm Singapore | Sep 2023 - Oct 2025', 'Carbon emissions, CO2e services, and Excel workflows.'], ['03', 'Junior Frontend Developer', 'Kumo Solutions | Jul 2022 - Aug 2023', 'HR workflows, React forms, reporting, and exports.']] },
   projects: { label: 'SELECTED WORK', items: [['NXStart', 'ESG data management and reporting'], ['NXMap', 'Carbon emissions management'], ['Alliance', 'HR management system']] },
@@ -39,7 +39,6 @@ export function TerminalConsole() {
     if (!command) return
     setInput('')
     if (command === 'clear') { setEntries([]); return }
-    if (command === 'resume') { setEntries(previous => [...previous, { type: 'command', text: command }, { type: 'system', text: 'Opening resume...' }]); window.location.assign('/resume.pdf'); return }
     const response = commandResponses[command]
     setEntries(previous => [...previous, { type: 'command', text: command }, response ? { type: 'response', response } : { type: 'system', text: `Command not found: ${command}. Type help.` }])
   }
