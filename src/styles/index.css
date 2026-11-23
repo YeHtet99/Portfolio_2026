@@ -68,3 +68,6 @@ main section[id]{scroll-margin-top:92px}.section-note{margin:0;color:var(--muted
 .hero-technologies{margin:10px 0 0;color:#b8c9d3;font:11px 'DM Mono';letter-spacing:.055em;line-height:1.6}
 .hero-years{color:var(--cyan);font-weight:600}
 .hero-summary i{background:#fff}
+
+/* Keep the technology label visually separate from its stack. */
+.skills-list article>div:nth-of-type(2)>.eyebrow{margin-bottom:10px}
