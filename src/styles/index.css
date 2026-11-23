@@ -71,3 +71,6 @@ main section[id]{scroll-margin-top:92px}.section-note{margin:0;color:var(--muted
 
 /* Keep the technology label visually separate from its stack. */
 .skills-list article>div:nth-of-type(2)>.eyebrow{margin-bottom:10px}
+
+/* The console owns wheel and trackpad scrolling while it has overflow. */
+.terminal-output{overscroll-behavior:contain}
