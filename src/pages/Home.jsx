@@ -29,12 +29,12 @@ export default function Home() {
   return <>
     <Seo title="Software Engineer" description="Ye Myint Htet — Software Engineer building ESG, emissions reporting, and HR management products."/>
     <section className="hero" id="top" ref={hero}>
-      <div className="grid-bg"/><div className="hero-copy"><h1><span className="hero-reveal">Building clarity</span><span className="hero-reveal italic">for complex</span><span className="hero-reveal">systems.</span></h1><p className="hero-summary hero-reveal">Software Engineer <i/> <strong className="hero-years">4+</strong> years of experience</p><p className="hero-technologies hero-reveal">React.js · Node.js · Express.js · MongoDB</p><div className="hero-actions hero-reveal"><a className="button" href="#work">Explore My Work</a></div><div className="hero-socials hero-reveal"><span>CONNECT</span><Socials/></div></div>
+      <div className="grid-bg"/><div className="hero-copy"><h1><span className="hero-reveal">Building clarity</span><span className="hero-reveal italic">for complex</span><span className="hero-reveal">systems.</span></h1><p className="hero-summary hero-reveal">Software Engineer <i/> <strong className="hero-years">4+</strong> years of experience</p><p className="hero-technologies hero-reveal">React.js · Node.js · Express.js · MongoDB</p><div className="hero-actions hero-reveal"><a className="button" href="#work">Explore Projects</a></div><div className="hero-socials hero-reveal"><span>CONNECT</span><Socials/></div></div>
       <div className="hero-image-wrap hero-reveal"><div className="portrait-glow"/><figure className="portrait-panel"><div className="portrait-frame"><img src="/images/profile.png" alt="Ye Myint Htet in a suit" className="portrait"/></div><figcaption><span>PORTRAIT / 01</span><span>MANDALAY, MM</span></figcaption></figure></div>
     </section>
 
     <section className="section projects-preview" id="work">
-      <Reveal><div className="section-heading"><span className="eyebrow">SELECTED WORK</span><p className="section-note">Three product systems, one focus: reliable workflows.</p></div></Reveal>
+      <Reveal><div className="section-heading"><span className="eyebrow">SELECTED PROJECTS</span><p className="section-note">Three product systems, one focus: reliable workflows.</p></div></Reveal>
       <div className="project-list">{projects.map((project, index) => <Reveal key={project.slug} delay={index * .06}><article className="project-row project-row-modal"><ProjectVisual project={project}/><div className="project-row-copy"><span className="eyebrow">{project.type}</span><h3>{project.name}</h3><p>{project.eyebrow}</p></div><button className="view-details" type="button" onClick={() => setActiveProject(project.slug)}>View Details</button></article></Reveal>)}</div>
     </section>
 
