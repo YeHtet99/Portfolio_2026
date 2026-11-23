@@ -80,3 +80,6 @@ main section[id]{scroll-margin-top:92px}.section-note{margin:0;color:var(--muted
 
 /* Equal project cards: a consistent screenshot, summary, stack, and action. */
 .projects-showcase{grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}.project-showcase-card .project-visual{height:clamp(210px,20vw,290px)}.project-showcase-copy{min-height:310px;padding:25px}.project-showcase-copy h3{font-size:clamp(2rem,2.7vw,2.6rem);margin:11px 0 12px}.project-showcase-summary{margin:0;color:#b8c8d1;font-size:.98rem;line-height:1.65}.project-showcase-stack{display:flex;flex-wrap:wrap;gap:7px;margin:20px 0 26px}.project-showcase-stack .tag{padding:7px 9px;font-size:9px}@media(max-width:760px){.projects-showcase{grid-template-columns:1fr}.project-showcase-card .project-visual{height:clamp(225px,62vw,330px)}.project-showcase-copy{min-height:0;padding:24px}.project-showcase-copy h3{font-size:2.25rem}}
+
+/* Keep the standard project cards at a comfortable two-column reading width. */
+.projects-showcase{grid-template-columns:repeat(2,minmax(0,1fr))}@media(max-width:760px){.projects-showcase{grid-template-columns:1fr}}
