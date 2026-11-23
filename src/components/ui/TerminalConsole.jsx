@@ -5,7 +5,7 @@ const commandResponses = {
   about: { label: 'PROFILE', lines: ['YE MYINT HTET', 'Software Engineer | Mandalay, Myanmar', '4+ years building ESG, carbon reporting, and HR management products.', 'Focus: Building data-rich product systems with React, Node.js, Express.js, MongoDB, and Redis.'] },
   experience: { label: 'EXPERIENCE', items: [['01', 'Software Engineer', 'Evercomm Singapore | Nov 2025 - Present', 'ESG dashboards, reporting workflows, Redis, and MongoDB.'], ['02', 'Mid-Level Full Stack Developer', 'Evercomm Singapore | Sep 2023 - Oct 2025', 'Carbon emissions, CO2e services, and Excel workflows.'], ['03', 'Junior Frontend Developer', 'Kumo Solutions | Jul 2022 - Aug 2023', 'HR workflows, React forms, reporting, and exports.']] },
   projects: { label: 'SELECTED PROJECTS', items: [['NXStart', 'ESG data management and reporting'], ['NXMap', 'Carbon emissions management'], ['Alliance', 'HR management system']] },
-  skills: { label: 'CAPABILITIES', lines: ['FRONTEND  React | JavaScript | TypeScript | Tailwind CSS | MobX', 'BACKEND   Node.js | Express.js | REST APIs | Validation', 'DATA      MongoDB | Mongoose | Aggregation | Redis', 'DELIVERY  GitHub Actions | Azure Pipelines | GitHub | GitLab | Azure DevOps'] },
+  skills: { label: 'SKILLS', lines: ['FRONTEND  React | JavaScript | TypeScript | Tailwind CSS | MobX', 'BACKEND   Node.js | Express.js | REST APIs | Validation', 'DATA      MongoDB | Mongoose | Aggregation | Redis', 'DELIVERY  GitHub Actions | Azure Pipelines | GitHub | GitLab | Azure DevOps'] },
   contact: { label: 'CONTACT', lines: ['Email     yemyinthtet99999@gmail.com', 'GitHub    github.com/YeHtet99', 'LinkedIn  linkedin.com/in/ye-myint-htet-73a88122a'] },
 }
 
