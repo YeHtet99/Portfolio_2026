@@ -7,7 +7,6 @@ import { experience } from '../data/experience'
 import { skillGroups } from '../data/skills'
 import { profile } from '../data/profile'
 import { Seo, Socials, Tag } from '../components/layout/Layout'
-import { ProjectVisual } from '../components/projects/ProjectVisual'
 import { Reveal } from '../components/ui/Reveal'
 
 export default function Home() {
@@ -35,7 +34,7 @@ export default function Home() {
 
     <section className="section projects-preview" id="work">
       <Reveal><div className="section-heading"><span className="eyebrow">SELECTED PROJECTS</span><p className="section-note">Three product systems, one focus: reliable workflows.</p></div></Reveal>
-      <div className="projects-showcase">{projects.map((project, index) => <Reveal key={project.slug} delay={index * .06}><article className="project-showcase-card"><ProjectVisual project={project}/><div className="project-showcase-copy"><span className="eyebrow">{project.eyebrow}</span><h3>{project.name}</h3><p className="project-showcase-summary">{project.summary}</p><div className="project-showcase-stack">{project.stack.slice(0, 4).map(item => <Tag key={item}>{item}</Tag>)}</div><button className="view-details" type="button" onClick={() => setActiveProject(project.slug)}>View Details</button></div></article></Reveal>)}</div>
+      <div className="projects-showcase">{projects.map((project, index) => <Reveal key={project.slug} delay={index * .06}><article className="project-showcase-card"><div className="project-showcase-copy"><span className="eyebrow">{project.eyebrow}</span><h3>{project.name}</h3><p className="project-showcase-summary">{project.summary}</p><div className="project-showcase-stack">{project.stack.slice(0, 4).map(item => <Tag key={item}>{item}</Tag>)}</div><button className="view-details" type="button" onClick={() => setActiveProject(project.slug)}>View Details</button></div></article></Reveal>)}</div>
     </section>
 
     <section className="section experience-tease" id="experience"><Reveal><div className="section-heading"><span className="eyebrow">EXPERIENCE</span><p className="section-note">Product work across ESG, carbon, and HR systems.</p></div><div className="experience-timeline">{experience.map(item => <article key={item.id}><span className="experience-period">{item.period}</span><div className="experience-detail"><h3>{item.role} <span>· {item.company}</span></h3><p className="experience-overview">{item.homeImpact}</p><div className="experience-tags">{item.technologies.slice(0, 5).map(technology => <Tag key={technology}>{technology}</Tag>)}</div></div></article>)}</div></Reveal></section>
