@@ -63,3 +63,6 @@ main section[id]{scroll-margin-top:92px}.section-note{margin:0;color:var(--muted
 
 /* About is intentionally text-led; the portrait remains exclusive to the hero. */
 .about-layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(250px,.75fr);gap:clamp(42px,9vw,140px);margin-top:38px;align-items:start}.about-copy-block h2{margin:0 0 28px}.about-copy-block .lead{max-width:720px}.about-layout .about-facts{display:grid;grid-template-columns:1fr;gap:18px;margin:0}.about-layout .about-facts dd{font-size:1rem}@media(max-width:760px){.about-layout{grid-template-columns:1fr;gap:34px;margin-top:30px}.about-copy-block h2{margin-bottom:22px}}
+
+/* Hero credibility line: experience first, technology detail second. */
+.hero-technologies{margin:10px 0 0;color:#b8c9d3;font:11px 'DM Mono';letter-spacing:.055em;line-height:1.6}
