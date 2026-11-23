@@ -7,6 +7,7 @@ test('one-page portfolio scrolls through anchored sections', async ({ page }) =>
   await page.getByRole('link', { name: 'Experience', exact: true }).click()
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(0)
   await expect(page).toHaveURL(/#experience$/)
+  await expect(page.getByRole('link', { name: 'Experience', exact: true })).toHaveClass(/active/)
   await page.getByRole('button', { name: 'View Details' }).nth(1).click()
   await expect(page.getByRole('dialog', { name: /NXMap/i })).toBeVisible()
   await expect(page.getByText(/Excel Import\/Export features/)).toBeVisible()
