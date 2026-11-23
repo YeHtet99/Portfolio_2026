@@ -1,3 +1,20 @@
 import { test, expect } from '@playwright/test'
-test('routes load and preserve primary navigation', async ({ page }) => { await page.goto('/'); await page.locator('.boot-sequence').waitFor({ state: 'hidden' }); await expect(page.getByText('Building clarity', { exact: true })).toBeVisible(); await page.getByRole('button', { name: 'Toggle command console' }).click(); await expect(page.getByRole('dialog', { name: 'Portfolio command console' })).toBeVisible(); await page.locator('#terminal-input').fill('help'); await page.locator('#terminal-input').press('Enter'); await expect(page.getByText(/about  - profile summary/)).toBeVisible(); await page.getByRole('link', { name: 'Projects', exact: true }).click(); await expect(page).toHaveURL(/\/projects$/); await page.goto('/projects/nxstart'); await expect(page.getByRole('heading', { name: 'NXStart ESG Platform' })).toBeVisible(); await expect(page.getByText(/previous KPI and overview state/)).toBeVisible(); await page.goto('/projects/nxmap'); await expect(page.getByRole('heading', { name: 'NXMap' })).toBeVisible(); await expect(page.getByText(/localized headers/)).toBeVisible(); await page.goto('/projects/alliance'); await expect(page.getByRole('heading', { name: 'Alliance HRMS' })).toBeVisible(); await expect(page.getByText(/Permission-Aware Dashboard/)).toBeVisible(); await page.goto('/about'); await expect(page.getByText('Technology University Mandalay')).toBeVisible() })
-test('returns to the top after project navigation', async ({ page }) => { await page.goto('/projects/nxstart'); await page.locator('.boot-sequence').waitFor({ state: 'hidden' }); await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight)); await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(0); await page.locator('.next-project').click(); await expect(page).toHaveURL(/\/projects\/nxmap$/); await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0) })
+
+test('one-page portfolio scrolls through anchored sections', async ({ page }) => {
+  await page.goto('/')
+  await page.locator('.boot-sequence').waitFor({ state: 'hidden' })
+  await expect(page.getByText('Building clarity', { exact: true })).toBeVisible()
+  await page.getByRole('link', { name: 'Experience', exact: true }).click()
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(0)
+  await expect(page).toHaveURL(/#experience$/)
+  await page.getByRole('button', { name: /NXMap/i }).click()
+  await expect(page.getByText(/Excel Import\/Export features/)).toBeVisible()
+  await page.getByRole('button', { name: 'Toggle command console' }).click()
+  await expect(page.getByRole('dialog', { name: 'Portfolio command console' })).toBeVisible()
+})
+
+test('old paths redirect to the single portfolio page', async ({ page }) => {
+  await page.goto('/projects/nxstart')
+  await expect(page).toHaveURL(/\/$/)
+  await expect(page.getByText('Building clarity', { exact: true })).toBeVisible()
+})
