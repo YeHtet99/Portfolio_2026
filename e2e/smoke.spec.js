@@ -24,3 +24,10 @@ test('old paths redirect to the single portfolio page', async ({ page }) => {
   await expect(page).toHaveURL(/\/$/)
   await expect(page.getByText('Building clarity', { exact: true })).toBeVisible()
 })
+
+test('highlights the section currently being read', async ({ page }) => {
+  await page.goto('/')
+  await page.locator('.boot-sequence').waitFor({ state: 'hidden' })
+  await page.locator('#experience').scrollIntoViewIfNeeded()
+  await expect(page.getByRole('link', { name: 'Experience', exact: true })).toHaveClass(/active/)
+})
