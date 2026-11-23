@@ -30,4 +30,5 @@ test('highlights the section currently being read', async ({ page }) => {
   await page.locator('.boot-sequence').waitFor({ state: 'hidden' })
   await page.locator('#experience').scrollIntoViewIfNeeded()
   await expect(page.getByRole('link', { name: 'Experience', exact: true })).toHaveClass(/active/)
+  await expect(page.locator('[data-timeline-entry]').first()).toHaveClass(/is-complete/)
 })

@@ -11,6 +11,7 @@ import { Reveal } from '../components/ui/Reveal'
 
 export default function Home() {
   const hero = useRef(null)
+  const timeline = useRef(null)
   const [activeProject, setActiveProject] = useState(null)
 
   useEffect(() => {
@@ -25,6 +26,25 @@ export default function Home() {
     return () => { window.removeEventListener('portfolio:booted', revealHero); ctx?.revert(); cancelAnimationFrame(frame); lenis.destroy() }
   }, [])
 
+  useEffect(() => {
+    const timelineElement = timeline.current
+    if (!timelineElement) return undefined
+    const entries = [...timelineElement.querySelectorAll('[data-timeline-entry]')]
+    const updateTimeline = () => {
+      const readingPoint = window.innerHeight * .58
+      entries.forEach(entry => {
+        const bounds = entry.getBoundingClientRect()
+        const progress = Math.max(0, Math.min(1, (readingPoint - bounds.top) / Math.max(bounds.height, 1)))
+        entry.style.setProperty('--entry-progress', `${progress * 100}%`)
+        entry.classList.toggle('is-complete', progress > .14)
+      })
+    }
+    updateTimeline()
+    window.addEventListener('scroll', updateTimeline, { passive: true })
+    window.addEventListener('resize', updateTimeline)
+    return () => { window.removeEventListener('scroll', updateTimeline); window.removeEventListener('resize', updateTimeline) }
+  }, [])
+
   return <>
     <Seo title="Software Engineer" description="Ye Myint Htet — Software Engineer building ESG, emissions reporting, and HR management products."/>
     <section className="hero" id="top" ref={hero}>
@@ -37,7 +57,7 @@ export default function Home() {
       <div className="projects-showcase">{projects.map((project, index) => <Reveal key={project.slug} delay={index * .06}><article className="project-showcase-card"><div className="project-showcase-copy"><span className="eyebrow">{project.eyebrow}</span><h3>{project.name}</h3><p className="project-showcase-summary">{project.summary}</p><div className="project-showcase-stack">{project.stack.slice(0, 4).map(item => <Tag key={item}>{item}</Tag>)}</div><button className="view-details" type="button" onClick={() => setActiveProject(project.slug)}>View Details</button></div></article></Reveal>)}</div>
     </section>
 
-    <section className="section experience-tease" id="experience"><Reveal><div className="section-heading"><span className="eyebrow">EXPERIENCE</span><p className="section-note">Product work across ESG, carbon, and HR systems.</p></div><div className="experience-timeline">{experience.map(item => <article key={item.id}><span className="experience-period">{item.period}</span><div className="experience-detail"><h3>{item.role} <span>· {item.company}</span></h3><p className="experience-overview">{item.homeImpact}</p><div className="experience-tags">{item.technologies.slice(0, 5).map(technology => <Tag key={technology}>{technology}</Tag>)}</div></div></article>)}</div></Reveal></section>
+    <section className="section experience-tease" id="experience"><Reveal><div className="section-heading"><span className="eyebrow">EXPERIENCE</span><p className="section-note">Product work across ESG, carbon, and HR systems.</p></div><div className="experience-timeline" ref={timeline}>{experience.map(item => <article key={item.id} data-timeline-entry><span className="experience-period">{item.period}</span><span className="experience-timeline-marker" aria-hidden="true"><i/><b/></span><div className="experience-detail"><h3>{item.role} <span>· {item.company}</span></h3><p className="experience-overview">{item.homeImpact}</p><div className="experience-tags">{item.technologies.slice(0, 5).map(technology => <Tag key={technology}>{technology}</Tag>)}</div></div></article>)}</div></Reveal></section>
 
     <section className="section single-about" id="about"><Reveal><span className="eyebrow">ABOUT</span><div className="about-layout"><div className="about-copy-block"><h2>Systems thinker.<br/><i>Product builder.</i></h2><p className="lead">I build product systems that make ESG reporting, emissions data, and people operations easier to understand and act on.</p><p className="about-copy">I’m Ye Myint Htet, a Software Engineer based in Mandalay, Myanmar. My work spans ESG platforms, carbon emissions reporting, and HR management applications. I approach complex workflows by making states visible and building the smallest robust system that serves them.</p></div><dl className="about-facts"><div><dt>EDUCATION</dt><dd>Bachelor’s Degree in Information Technology<br/><span>Technology University Mandalay</span></dd></div><div><dt>LANGUAGES</dt><dd>Burmese · English · Japanese</dd></div><div><dt>PRINCIPLE</dt><dd>Build with care for the people working inside the system every day.</dd></div></dl></div></Reveal></section>
 
